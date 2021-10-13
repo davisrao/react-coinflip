@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { getFlippedResult } from "./helpers";
+import { headImage, tailImage } from "./coinImage";
 
 function Coin({}) {
-  const [image, setImage] = useState(
-    "https://media.istockphoto.com/photos/quarter-dollar-us-coin-isolated-on-white-picture-id476142091?s=612x612"
-  );
+  const [image, setImage] = useState("");
   const [totalFlips, setTotalFlips] = useState(0);
   const [heads, setHeads] = useState(0);
   const [tails, setTails] = useState(0);
@@ -13,12 +12,14 @@ function Coin({}) {
     const result = getFlippedResult();
 
     result === "heads" ? setHeads(heads + 1) : setTails(tails + 1);
+    result === "tails" ? setImage(tailImage) : setImage(headImage);
 
     setTotalFlips(totalFlips + 1);
   }
 
   return (
     <div className="Coin">
+      <h2>Lets Flip a Coin!</h2>
       <div className="Coin-image-container">
         <img className="Coin-image" src={image} />
       </div>
